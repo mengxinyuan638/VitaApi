@@ -12,7 +12,7 @@ class ApiCounter
         // 初始化cURL会话
         $count = curl_init();
         // 设置cURL选项
-        curl_setopt($count, CURLOPT_URL, "http://localhost/api/count"); // 目标URL
+        curl_setopt($count, CURLOPT_URL,$_SERVER['HTTP_HOST']."/api/count"); // 目标URL
         curl_setopt($count, CURLOPT_POST, 1); // 设置为POST请求
         curl_setopt($count, CURLOPT_POSTFIELDS, "id=".$id); // 请在这里填写api的id注意不要填错
         curl_setopt($count, CURLOPT_RETURNTRANSFER, true); // 将响应结果作为字符串返回，而不是直接输出

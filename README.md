@@ -43,6 +43,8 @@ Mysql数据库
 
 ​	要使用api统计功能需要在api源码头部引入我封装的文件 `ApiCounter.php` ,具体代码如下
 
+​	其中increment函数内填入本api对应的id
+
 ```php
 <?php
 //引入部分

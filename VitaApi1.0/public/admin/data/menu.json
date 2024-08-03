@@ -1,0 +1,65 @@
+[
+	{
+		"id": 1,
+		"title": "工作空间",
+		"icon": "layui-icon layui-icon-console",
+		"type": 0,
+		"children": [
+			{
+				"id": "10",
+				"title": "分析页",
+				"icon": "layui-icon layui-icon-console",
+				"type": 1,
+				"openType": "_component",
+				"href": "/home/analysis"
+			},
+			{
+				"id": "11",
+				"title": "API信息管理",
+				"icon": "layui-icon layui-icon-console",
+				"type": 1,
+				"openType": "_component",
+				"href": "/home/apimsg"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"title": "平台信息",
+		"icon": "layui-icon layui-icon-website",
+		"type": 0,
+		"children": [
+			{
+				"id": "20",
+				"title": "平台信息管理",
+				"icon": "layui-icon layui-icon-website",
+				"type": 1,
+				"openType": "_component",
+				"href": "/home/webmsg"
+			},{
+				"id": "21",
+				"title": "侧边菜单信息",
+				"icon": "layui-icon layui-icon-website",
+				"type": 1,
+				"openType": "_component",
+				"href": "/home/menumsg"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"title": "友链信息",
+		"icon": "layui-icon layui-icon-user",
+		"type": 0,
+		"children": [
+			{
+				"id": "30",
+				"title": "友链信息管理",
+				"icon": "layui-icon layui-icon-user",
+				"type": 1,
+				"openType": "_component",
+				"href": "/home/friendmsg"
+			}
+		]
+	}
+]

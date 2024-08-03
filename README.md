@@ -7,10 +7,36 @@
   <img src="https://img.shields.io/badge/jquery-orange" alt="jquery"/>
   <img src="https://img.shields.io/badge/Layui-green" alt="Layui"/>
   <img src="https://img.shields.io/badge/ThinkPHP-6.1-green"/>
-  <img src="https://img.shields.io/badge/Version-v0.1.0-blue" alt="version"/>
+  <img src="https://img.shields.io/badge/Version-v1.0.0-blue" alt="version"/>
   <img src="https://img.shields.io/badge/萌新源API管理系统-续作-green"/>
 </p>
 <hr>
 
 
-项目处于开发进度当中。。。
+
+## 介绍
+前端基于layui以及pear-Admin-layui
+后端基于国产ThinkPHP框架
+开发的API管理后台
+
+## 版本要求
+PHP8.0及以上版本
+Mysql数据库
+
+目前仅支持mysql
+
+## 安装教程
+
+前往[CSDN](https://blog.csdn.net/m0_66648798/article/details/140888896)阅读
+
+## 更新日志
+
+2024.8.3 v1.0.0
+
+- VitaApi第一版
+
+## 参与贡献
+
+欢迎各位提交issue还有pr
+
+加入我的qq群：934541995反馈问题或参与讨论

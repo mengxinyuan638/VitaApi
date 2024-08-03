@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../layui/dist/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../animate/animate.css">
+    <title>VitaApi管理系统-安装向导</title>
+    <style>
+        .con {
+            display: flex;
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+            /* 垂直居中 */
+            height: 100vh;
+            /* 使用视口高度，也可以用具体的值 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="layui-row con animate__animated animate__fadeInUp">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md4">
+            <div class="layui-panel" style="padding: 15px;border-radius: 10px;">
+                <div class="layui-row">
+                    <div class="layui-col-xs12 layui-col-sm12 layui-col-md12"
+                        style="display: flex; justify-content: center;">
+                        <img src="./img/logo.png" alt="" width="90px" height="90px" style="border-radius: 10px;">
+                    </div>
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-xs12 layui-col-sm12 layui-col-md12"
+                        style="display: flex; justify-content: center;">
+                        <h2>VitaApi管理系统-安装向导</h2>
+                    </div>
+                </div>
+                <hr class="layui-border-green">
+                <div id="cardbody">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item" style="margin-top: 30px;margin-right: 15px;">
+                            <label class="layui-form-label">库地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="host" lay-verify="required" autocomplete="off"
+                                    placeholder="请输入" class="layui-input" value="localhost">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" style="margin-top: 30px;margin-right: 15px;">
+                            <label class="layui-form-label">端口号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="port" lay-verify="required" autocomplete="off"
+                                    placeholder="请输入数据库端口号" class="layui-input" value="3306">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" style="margin-top: 30px;margin-right: 15px;">
+                            <label class="layui-form-label">数据库名</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="db_name" lay-verify="required" autocomplete="off"
+                                    placeholder="请输入您希望安装的数据库名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" style="margin-top: 30px;margin-right: 15px;">
+                            <label class="layui-form-label">用户名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="username" lay-verify="required" autocomplete="off"
+                                    placeholder="请输入数据库用户名" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" style="margin-top: 30px;margin-right: 15px;">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name=" password" lay-verify="required" autocomplete="off"
+                                    placeholder="请输入数据库密码" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-btn-container"
+                            style="margin-top: 30px;width: 30%;margin-right:auto;margin-left:auto;">
+                            <button type="button" lay-submit class="layui-btn layui-btn-fluid layui-btn-radius"
+                                lay-filter="az">立即安装</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="../layui/dist/layui.js"></script>
+<script>
+    layui.use(['form', 'layer', 'carousel', 'element'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var carousel = layui.carousel;
+        var element = layui.element;
+
+        form.on('submit(az)', function (res) {
+            var index = layer.load(2, { time: 100 * 1000 });
+
+            $.post("./dbcheck.php", res.field, function (data) {
+                if (data.code == 500) {
+                    layer.msg(data.msg, { icon: 5 });
+                    layer.close(index);
+                } else {
+                    layer.msg(data.msg, { icon: 1 });
+                    layer.close(index);
+
+                    $("#cardbody").html("<div class=\"layui-carousel\" id=\"test1\"><div carousel-item><div><img src=\"./img/1.png\" style=\"width:100%;height:100%;\"></div><div><img src=\"./img/2.png\" style=\"width:100%;height:100%;\"></div><div><img src=\"./img/3.png\" style=\"width:100%;height:100%;\"></div><div><img src=\"./img/4.png\" style=\"width:100%;height:100%;\"></div><div><img src=\"./img/5.png\" style=\"width:100%;height:100%;\"></div></div></div><div class=\"layui-progress layui-progress-big\" lay-filter=\"demo\" lay-showPercent=\"true\"  style=\"width:450px;margin-left:auto;margin-right:auto;margin-top:20px;\"><div class=\"layui-progress-bar layui-bg-blue\" lay-percent=\"0%\"></div></div><div style=\"margin-left:25px;margin-top:20px;\"><h id=\"ts\">正在安装中，请稍后。。。</h></div><div id=\"last\" class=\"layui-anim layui-anim-scaleSpring\" style=\"float:right;margin-right:25px;\"></div>")
+                    element.progress('demo', '35%');//设置进度条进度
+                    //建造实例
+                    carousel.render({
+                        elem: '#test1'
+                        , width: '100%' //设置容器宽度
+                        , arrow: 'always' //始终显示箭头
+                    });
+
+                    //发送请求创建数据库表
+                    //发送请求
+                    $.post("./editdb.php", res.field, function (crt_msg) {
+                        if (crt_msg.code == 200) {
+                            $("#ts").text(crt_msg.msg);
+                            element.progress('demo', '75%');//设置进度条进度
+                            $("#ts").text("安装完成");
+                            element.progress('demo', '100%');//设置进度条进度
+                            $("#last").prepend("<button id=\"next\" type=\"button\" class=\"layui-btn layui-btn-sm layui-btn-radius layui-btn-normal\">下一步</button>");
+                            $("#next").click(function () {
+                                $("#cardbody").html("<div style=\"text-align:center\"><h><b>请填写后台管理用户信息</b></h></div><form class=\"layui-form\" action=\"\"><div class=\"layui-form-item\" style=\"margin-top: 30px;margin-right: 15px;\"><label class=\"layui-form-label\">用户名称</label><div class=\"layui-input-block\"><input type=\"text\" name=\"username\" lay-verify=\"required\" autocomplete=\"off\" placeholder=\"请输入\" class=\"layui-input\"></div></div><div class=\"layui-form-item\" style=\"margin-top: 30px;margin-right: 15px;\"><label class=\"layui-form-label\">密码</label><div class=\"layui-input-block\"><input type=\"password\" name=\"password\" lay-verify=\"required\" autocomplete=\"off\" placeholder=\"请输入\" class=\"layui-input\"></div></div><div class=\"layui-btn-container\" style=\"margin-top: 30px;width: 30%;margin-right:auto;margin-left:auto;\"><button type=\"button\" lay-submit class=\"layui-btn layui-btn-normal layui-btn-fluid layui-btn-radius\" lay-filter=\"tj\">提交</button></div></form>");
+                            });
+                        }
+                    }, "json")
+
+                    //提交后台管理用户数据
+                    form.on('submit(tj)', function (mm) {
+                        $.post("./user.php", {username: mm.field.username, password: mm.field.password, db: res.field}, function (add_msg) {
+                            if (add_msg.code == 200) {
+                                $("#cardbody").html("<center><div class=\"layui-anim layui-anim-scaleSpring\" style=\"margin-top:45px;\"><img src=\"./img/end.png\" style=\"width:150px;\"></div><div style=\"margin-top:25px;\"><h><b>恭喜你，安装已完成，请手动删除public目录下的install文件夹</b></h></div></center>");
+                            } else {
+                                layer.msg(add_msg.msg, { icon: 5 });
+                            }
+                        }, "json")
+                    })
+
+
+                    //添加成功动画
+                    $("#xd").addClass("layui-anim-scaleSpring");
+                }
+            }, "json")
+
+        })
+    })
+</script>
+
+</html>

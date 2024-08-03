@@ -35,6 +35,28 @@ Mysql数据库
 
 - VitaApi第一版
 
+
+
+## 功能简介
+
+1. ### api调用功能统计
+
+​	要使用api统计功能需要在api源码头部引入我封装的文件 `ApiCounter.php` ,具体代码如下
+
+```php
+<?php
+//引入部分
+include './ApiCounter.php';
+$apicounter = new ApiCounter();
+$apicounter -> increment('1');
+
+//你的api代码部分
+echo '你好';
+?>
+```
+
+
+
 ## 参与贡献
 
 欢迎各位提交issue还有pr
